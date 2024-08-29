@@ -3,8 +3,9 @@ const champsController = require("../controllers/champsController");
 
 const ChampsRouter = Router();
 
-ChampsRouter.get("/", champsController.getAllchamps);
-ChampsRouter.get("/champs/line/:line", champsController.getChampsByLine);
-ChampsRouter.get("/champs/name/:name", champsController.getChampsByName);
+ChampsRouter.get("/", champsController.getChamps);
+ChampsRouter.get("/line/:line", champsController.getChampsByLine);
+// ChampsRouter.get("/name/:name", champsController.getChampsByName);
+ChampsRouter.get("/id/:id", champsController.getChampById);
 
 module.exports = ChampsRouter;

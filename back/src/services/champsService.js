@@ -1,3 +1,5 @@
+const { getChampsById } = require("../controllers/champsController");
+
 const champs = [
   {
     id: 1,
@@ -106,13 +108,20 @@ const champs = [
 ];
 
 module.exports = {
-  getAllchamps: () => {
+  getChamps: (champName) => {
+    if (champName) {
+      return champs.filter((champ) => champ.name.includes(champName));
+    }
     return champs;
-  },
-  getChampsByName: (champName) => {
-    return champs.find((champ) => champ.name === champName);
   },
   getChampsByLine: (line) => {
     return champs.filter((champ) => champ.line.includes(line));
+  },
+  getChampById: (id) => {
+    const champ = champs.find((champ) => champ.id === id);
+    if (!champ) {
+      throw new Error("Campeon no encontrado");
+    }
+    return champ;
   },
 };
