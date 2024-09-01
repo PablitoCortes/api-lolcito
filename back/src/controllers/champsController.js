@@ -2,9 +2,9 @@ const champsService = require("../services/champsService");
 
 module.exports = {
   getChamps: async (req, res) => {
-    const { name } = req.query;
+    const champName = req.query.name;
     try {
-      const champs = await champsService.getChamps(name);
+      const champs = await champsService.getChamps(champName);
       if (champs.length > 0) {
         return res.status(200).json(champs);
       }
@@ -17,15 +17,9 @@ module.exports = {
   },
   getChampsByLine: async (req, res) => {
     try {
-      const champLine = req.params.line; // Acceso correcto a los parámetros
+      const champLine = req.params.line;
       const lineChamps = await champsService.getChampsByLine(champLine);
-      if (lineChamps.length > 0) {
-        res.status(200).json(lineChamps);
-      } else {
-        res
-          .status(404)
-          .json({ message: "No se encontraron campeones para esta línea" });
-      }
+      res.status(200).json(lineChamps);
     } catch (error) {
       res
         .status(500)
