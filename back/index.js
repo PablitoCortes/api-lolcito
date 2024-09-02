@@ -9,3 +9,5 @@ conDb().then((res) => {
     console.log("servidor escuchando en el puerto 3002");
   });
 });
+
+module.exports = app;
