@@ -13,8 +13,8 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:3002",
-        description: "Servidor local",
+        url: process.env.SERVER_URL || "http://localhost:3002",
+        description: process.env.SERVER_URL ? "Servidor de producción" : "Servidor local",
       },
     ],
   },
