@@ -1,11 +1,148 @@
 const mongoose = require("mongoose");
 
-const champSchema = new mongoose.Schema({
-  name: String,
-  habilities: Object,
-  line: Array,
-});
+const champSchema = new mongoose.Schema(
+  {
+    type: String,
+    format: String,
+    version: String,
+    id: { type: String, required: true, unique: true },
+    key: { type: String, required: true },
+    name: { type: String, required: true },
+    title: String,
+    blurb: String,
+    lore: String,
+    allytips: [String],
+    enemytips: [String],
+    tags: [String],
+    partype: String,
+    image: {
+      full: String,
+      sprite: String,
+      group: String,
+      x: Number,
+      y: Number,
+      w: Number,
+      h: Number,
+    },
+    skins: [
+      {
+        id: String,
+        num: Number,
+        name: String,
+        chromas: Boolean,
+      },
+    ],
+    info: {
+      attack: Number,
+      defense: Number,
+      magic: Number,
+      difficulty: Number,
+    },
+    stats: {
+      hp: Number,
+      hpperlevel: Number,
+      mp: Number,
+      mpperlevel: Number,
+      movespeed: Number,
+      armor: Number,
+      armorperlevel: Number,
+      spellblock: Number,
+      spellblockperlevel: Number,
+      attackrange: Number,
+      hpregen: Number,
+      hpregenperlevel: Number,
+      mpregen: Number,
+      mpregenperlevel: Number,
+      crit: Number,
+      critperlevel: Number,
+      attackdamage: Number,
+      attackdamageperlevel: Number,
+      attackspeedperlevel: Number,
+      attackspeed: Number,
+    },
+    spells: [
+      {
+        id: String,
+        name: String,
+        description: String,
+        tooltip: String,
+        leveltip: {
+          label: [String],
+          effect: [String],
+        },
+        maxrank: Number,
+        cooldown: [Number],
+        cooldownBurn: String,
+        cost: [Number],
+        costBurn: String,
+        datavalues: mongoose.Schema.Types.Mixed,
+        effect: [[Number]],
+        effectBurn: [String],
+        vars: [
+          {
+            link: String,
+            key: String,
+            coeff: mongoose.Schema.Types.Mixed,
+          },
+        ],
+        costType: String,
+        maxammo: String,
+        range: [Number],
+        rangeBurn: String,
+        image: {
+          full: String,
+          sprite: String,
+          group: String,
+          x: Number,
+          y: Number,
+          w: Number,
+          h: Number,
+        },
+        resource: String,
+      },
+    ],
+    passive: {
+      name: String,
+      description: String,
+      image: {
+        full: String,
+        sprite: String,
+        group: String,
+        x: Number,
+        y: Number,
+        w: Number,
+        h: Number,
+      },
+    },
+    recommended: [
+      {
+        champion: String,
+        title: String,
+        map: String,
+        mode: String,
+        type: String,
+        faction: String,
+        priority: Boolean,
+        blocks: [
+          {
+            type: String,
+            recMath: Boolean,
+            minSummonerLevel: Number,
+            maxSummonerLevel: Number,
+            showIfSummonerSpell: String,
+            hideIfSummonerSpell: String,
+            items: [
+              {
+                id: String,
+                count: Number,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
-const Champ = new mongoose.model("campeones", champSchema);
-
-module.exports = Champ;
+module.exports = mongoose.model("Champion", champSchema);

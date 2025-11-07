@@ -1,4 +1,4 @@
-const app = require("../src/server"); // Cambia esto según el nombre y la ubicación de tu archivo principal Express
+const app = require("../src/server");
 
 module.exports = (req, res) => {
   return new Promise((resolve) => {
